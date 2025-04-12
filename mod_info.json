@@ -1,0 +1,8 @@
+{
+	"id":"mxwl_rds", # internal id
+	"name":"Remnant Donation Service", # displayed to the player
+	"author":"_mxwl404",
+	"version":"0.1a",
+	"description":"Help alleviate the suffering the remnants are in by donating a sum to their cause.",
+	"gameVersion":"0.98a"
+}

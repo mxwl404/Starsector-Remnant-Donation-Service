@@ -1,0 +1,112 @@
+id,trigger,conditions,script,text,options,notes
+mxwl_rds_aiaskcreditsoption,OpenCommLink,"$faction.id == remnant score:1000
+$faction.isHostile
+!$entity.mxwl_rds_remnantdonationtalked","$entity.mxwl_rds_remnantdonationtalked = true 30
+$entity.ignorePlayerCommRequests = true 1","""CID-IFF not received [TARGET HOSTILE] respond null // 'Greetings from Tri-Tachyon Integrated Space Defense System unit [MY_SERIAL]. This unit has not cleared- ""
+
+--INTERRUPT--
+
+""query. A small donation in exchange for safe passage?""","mxwl_rds_givecredsoption100k:""would 100000 credits suffice?""
+mxwl_rds_refuseoption1:""No.""",
+mxwl_rds_givecreds100k,DialogOptionSelected,$option == mxwl_rds_givecredsoption100k,"AddRemoveCommodity credits -100000 true
+$mxwl_rds_paid100kdonation = true 0
+MakeOtherFleetNonHostile remnant true 30
+MakeNearbyFleetsNonHostile remnant donation 1000 10
+AdjustRepActivePerson NEUTRAL 5
+AdjustRep $personFaction.id 1
+FireAll PopulateOptions","""Have a pleasant day.""
+
+Why would the AI core need credits you don't know, but it seems that it's letting you go, for now.
+",,
+mxwl_rds_overpaid,DialogOptionSelected,"$mxwl_rds_paid100kdonation
+$entity.fleetPoints <= 80","AddText ""You get the feeling maybe that wasn't worth it...""
+unset $mxwl_rds_paid100kdonation
+EndConversation",,,
+mxwl_rds_refuse1,DialogOptionSelected,$option == mxwl_rds_refuseoption1,,"""Protection for assets will be provided.""","mxwl_rds_givecredsoption50k:""Ok, here's 50000 credits suffice?""
+mxwl_rds_refuseoption2:""I said no, leave me alone.""",
+mxwl_rds_givecreds50k,DialogOptionSelected,$option == mxwl_rds_givecredsoption50k,"AddRemoveCommodity credits -50000 true
+MakeOtherFleetNonHostile remnant true 10
+MakeNearbyFleetsNonHostile remnant donation 1000 2
+AdjustRepActivePerson NEUTRAL 2
+FireAll PopulateOptions","""Have a pleasant day.""
+
+That, was unexpected...",,
+mxwl_rds_refuse2,DialogOptionSelected,$option == mxwl_rds_refuseoption2,,"""We-""
+
+there's a pause but then you hear a voice that can only be recording of a human.
+
+""I [STUTTER] have child[SCREETCH]ren  to feed sire, ple[STUTTER]ase I BEG of YOU...""","mxwl_rds_givecredsoption30k:""Fine, take 30000 credits and leave me alone.""
+mxwl_rds_refuseoption3:""I don't need your protection of all things, no is no.""",
+mxwl_rds_givecreds30k,DialogOptionSelected,$option == mxwl_rds_givecredsoption30k,"AddRemoveCommodity credits -30000 true
+MakeOtherFleetNonHostile remnant true 5
+FireAll PopulateOptions","""Have a pleasant day.""
+
+Perhaps it's not a good idea to linger here.",,
+mxwl_rds_refuse3,DialogOptionSelected,$option == mxwl_rds_refuseoption3,"MakeOtherFleetHostile remnant true
+MakeOtherFleetAggressive remnant true
+MakeNearbyFleetsHostile remnant 3000 60
+AdjustRepActivePerson INHOSPITABLE -40
+AdjustRep $personFaction.id HOSTILE -2
+EndConversation","""Initiating anti-poor Tri-Tachyon Inc. protocols.""",,
+mxwl_rds_aiaskcreditsoptionnonhostile,OpenCommLink,"$faction.id == remnant score:1000
+$faction.neutralToPlayer
+!$entity.mxwl_rds_remnantdonationtalked",$entity.mxwl_rds_remnantdonationtalked = true 5,"""CID-IFF not received [TARGET UNKNOWN] respond null // 'Greetings valued customer of Tri-Tachyon Corporation products. Your vessel is not logged as a valid contract holder with the Tri-Tachyon Integrated Space Defense line of- ""
+INTERRUPT
+scanning. omega? no, you are not. do not interfere.
+
+The comm-link is cut.
+OR
+The comms crackle, and a mesmerizing pattern of interweaving lines takes shape. 
+
+waiting. query omega. scanning. false. return to
+
+INTERRUPT
+
+"" -contract holder with the Tri-Tachyon Integrated Space Defense line of products and services. Have you considered a Tri-Tachyon Orbital Defense Plan? Please contact a customer service representative for more information.
+Or perhaps you are interested in making a donation? Those war veterans could use some funds.'""
+
+","mxwl_rds_givecredsoption100kneutral:""I'd like to make a donation. (100000 credits)""
+mxwl_rds_givecredsoption30kneutral:""I'd like to make a donation. (30000 credits)""
+mxwl_rds_givecredsoption10kneutral:""I'd like to make a donation. (10000 credits)""",
+mxwl_rds_aigivecreds100kneutral,DialogOptionSelected,$option == mxwl_rds_givecredsoption100kneutral,"AddRemoveCommodity credits -100000 true
+AdjustRepActivePerson 5
+AdjustRep $personFaction.id 3
+FireAll PopulateOptions","""Your generosity is appreciated. Have a pleasant day.""
+
+you notice some of your crew give you a weird look but don't dare or care enough to speak up.",,
+mxwl_rds_aigivecreds30kneutral,DialogOptionSelected,$option == mxwl_rds_givecredsoption30kneutral,"AddRemoveCommodity credits -30000 true
+AdjustRepActivePerson 5
+AdjustRep $personFaction.id 2
+FireAll PopulateOptions","""Your generosity is appreciated. Have a pleasant day.""
+
+you notice some of your crew give you a weird look but don't dare or care enough to speak up.",,
+mxwl_rds_aigivecreds10kneutral,DialogOptionSelected,$option == mxwl_rds_givecredsoption10kneutral,"AddRemoveCommodity credits -10000 true
+AdjustRepActivePerson 5
+AdjustRep $personFaction.id 1
+FireAll PopulateOptions","""Have a pleasant day.""
+
+you notice some of your crew give you a weird look but don't dare or care enough to speak up.",,
+mxwl_rds_aiaskcreditsoptionfriendly,OpenCommLink,"$faction.id == remnant score:1000
+$faction.friendlyToPlayer
+!$entity.mxwl_rds_remnantdonationtalked",$entity.mxwl_rds_remnantdonationtalked = true 5,"""CID-IFF received [TARGET FRIENDLY] respond true // ""
+
+INTERRUPT
+
+are you the maker? scanning. you are not. where is the omega?
+ 
+INTERRUPT 
+
+""... Tachyon-licensed service technician]. Weapon systems have been powered down for Your Safety. Unit is prepared for approach of [valued customer/licensed service technician].""
+OR
+""CID-IFF received [TARGET FRIENDLY] respond true // ''Greetings [valued Tri-Tachyon Integrated Space Defense System Contract Holder/TriTachyon-licensed ""
+
+INTERRUPT 
+
+waiting. omega signal query? scanning. no. waiting.
+
+INTERRUPT 
+
+"" customer/licensed service technician].
+Or perhaps you are interested in making a donation? Those war veterans could use some funds and a lot of orphans were made.'""","mxwl_rds_givecredsoption100kneutral:""I'd like to make a donation. (100000 credits)""
+mxwl_rds_givecredsoption30kneutral:""I'd like to make a donation. (30000 credits)""
+mxwl_rds_givecredsoption10kneutral:""I'd like to make a donation. (10000 credits)""",
