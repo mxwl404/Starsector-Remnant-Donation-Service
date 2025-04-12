@@ -67,7 +67,8 @@ Or perhaps you are interested in making a donation? Those war veterans could use
 
 ","mxwl_rds_givecredsoption100kneutral:""I'd like to make a donation. (100000 credits)""
 mxwl_rds_givecredsoption30kneutral:""I'd like to make a donation. (30000 credits)""
-mxwl_rds_givecredsoption10kneutral:""I'd like to make a donation. (10000 credits)""",
+mxwl_rds_givecredsoption10kneutral:""I'd like to make a donation. (10000 credits)""
+cutCommLink:""I'll be on my way.""",
 mxwl_rds_aigivecreds100kneutral,DialogOptionSelected,$option == mxwl_rds_givecredsoption100kneutral,"AddRemoveCommodity credits -100000 true
 AdjustRepActivePerson 5
 AdjustRep $personFaction.id 3
@@ -109,4 +110,5 @@ INTERRUPT
 "" customer/licensed service technician].
 Or perhaps you are interested in making a donation? Those war veterans could use some funds and a lot of orphans were made.'""","mxwl_rds_givecredsoption100kneutral:""I'd like to make a donation. (100000 credits)""
 mxwl_rds_givecredsoption30kneutral:""I'd like to make a donation. (30000 credits)""
-mxwl_rds_givecredsoption10kneutral:""I'd like to make a donation. (10000 credits)""",
+mxwl_rds_givecredsoption10kneutral:""I'd like to make a donation. (10000 credits)""
+cutCommLink:""I'll be on my way.""",
